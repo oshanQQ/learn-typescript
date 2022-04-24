@@ -1,1 +1,1 @@
-# typescript-guide
+# learn-typescript
