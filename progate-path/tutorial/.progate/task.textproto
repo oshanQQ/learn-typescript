@@ -1,0 +1,1 @@
+task_id:"Q6vNluv08jcMFoMCu9si7" check_item:{check_item_id:"kBjMGWQrjsnUFLkkkFjgA" command:{command_id:"SfEFjtAqYLAf2tCHrwrLf" command_line:"progate diagnose"}} check_item:{check_item_id:"KWn93Dn1GnhqnIOD1fnem" command:{command_id:"bHEQqC1ABdhyjJY6x5mA5" command_line:"diff --strip-trailing-cr --ignore-space-change --ignore-blank-lines answer.txt hello.txt"}}
