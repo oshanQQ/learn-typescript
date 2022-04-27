@@ -1,24 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import WaveSurfer from 'wavesurfer.js';
+import { useRef } from "react";
 
-function App() {
+const App = () => {
+  const waveformRef: any = useRef(null);
+  var context: any = null;
+
+  const handlePlayPause = () => {
+    waveformRef.current.playPause();
+    console.log("handlePlayPause")
+  }
+
+  const handleChangeFile = (e: any) => {
+    if (context == null) {
+      window.AudioContext = window.AudioContext;
+      context = new AudioContext();
+
+      waveformRef.current = WaveSurfer.create({
+        container: waveformRef.current,
+        audioContext: context,
+      });
+    }
+
+    const file = e.target.files[0]
+    if (file) {
+      const fileUrl = URL.createObjectURL(file)
+      waveformRef.current.load(fileUrl);
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div ref={waveformRef}></div>
+      <input type="file" accept="audio/*" onChange={(e) => handleChangeFile(e)} />
+      <button onClick={handlePlayPause}>Play/Pause</button>
     </div>
   );
 }
