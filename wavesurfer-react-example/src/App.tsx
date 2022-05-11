@@ -1,28 +1,44 @@
 import WaveSurfer from "wavesurfer.js";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 
-export default function App() {
-  const waveformRef = useRef<WaveSurfer>(null!);
+const App = () => {
+  const waveformRef: any = useRef(null);
+  var context: any = null;
 
-  useEffect(() => {
-    waveformRef.current = WaveSurfer.create({
-      // Type 'WaveSurfer' is not assignable to type 'string | HTMLElement'.
-      container: waveformRef.current,
-    });
-    waveformRef.current.load("assets/test.wav");
-  }, []);
-
-  function handlePlayPause() {
+  const handlePlayPause = () => {
     waveformRef.current.playPause();
-  }
+    console.log("handlePlayPause");
+  };
+
+  const handleChangeFile = (e: any) => {
+    if (context == null) {
+      window.AudioContext = window.AudioContext;
+      context = new AudioContext();
+
+      waveformRef.current = WaveSurfer.create({
+        container: waveformRef.current,
+        audioContext: context,
+      });
+    }
+
+    const file = e.target.files[0];
+    if (file) {
+      const fileUrl = URL.createObjectURL(file);
+      waveformRef.current.load(fileUrl);
+    }
+  };
 
   return (
-    <>
-      {/* Type 'MutableRefObject<WaveSurfer>' is not assignable to type 'LegacyRef<HTMLDivElement> | undefined'. */}
+    <div>
       <div ref={waveformRef}></div>
-      <div id="control">
-        <button onClick={handlePlayPause}>Play/Pause</button>
-      </div>
-    </>
+      <input
+        type="file"
+        accept="audio/*"
+        onChange={(e) => handleChangeFile(e)}
+      />
+      <button onClick={handlePlayPause}>Play/Pause</button>
+    </div>
   );
-}
+};
+
+export default App;
