@@ -27,7 +27,9 @@ const AudioRecordingPanel = ({ sentence }: Props) => {
       >
         停止
       </Button>
-      <Text>{sentence}</Text>
+      <Text fontWeight="bold" textColor="gray.700">
+        {sentence}
+      </Text>
     </HStack>
   );
 };
