@@ -8,7 +8,7 @@ const Home: NextPage = () => {
 
   return (
     <div>
-      <Waveform />
+      <Waveform url="jp.mp3" />
     </div>
   );
 };
