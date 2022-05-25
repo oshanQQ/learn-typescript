@@ -12,7 +12,7 @@ const AudioRecordPanelList = ({ csvContent }: Props) => {
     <VStack
       divider={<StackDivider borderColor="gray.200" />}
       spacing={4}
-      align="stretch"
+      align="start"
     >
       {csvContent.map((data) => (
         <AudioRecordPanel

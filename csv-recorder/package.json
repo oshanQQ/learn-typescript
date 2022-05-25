@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "audio-recorder-polyfill": "^0.4.1",
     "csv-parse": "^5.1.0",
     "next": "12.1.6",
     "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react-dom": "18.1.0",
+    "react-media-recorder": "1.6.5"
   },
   "devDependencies": {
     "@chakra-ui/react": "^2.1.2",
